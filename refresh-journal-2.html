@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE JOURNAL - Travel Collections with Your Products</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap');
+        body { font-family: 'Montserrat', sans-serif; }
+        .font-serif { font-family: 'Crimson Text', serif; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const MapPin = () => (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+        );
+
+        const Heart = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+        );
+
+        const ShoppingBag = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+        );
+
+        const Search = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+        );
+
+        const TheJournalOption4 = () => {
+            const [page, setPage] = useState('home');
+            const [selectedChapter, setSelectedChapter] = useState('all');
+            const [cartCount, setCartCount] = useState(0);
+
+            const chapters = {
+                amalfi: { 
+                    color: '#4A7C9C', 
+                    name: 'Amalfi Chapter', 
+                    location: 'Italian Coast',
+                    season: 'Summer 2025',
+                    description: 'Mediterranean blues and coastal whites with delicate embroidery inspired by the Amalfi coastline',
+                    embroideryStyle: 'Wave patterns, floral motifs, tonal blue and white stitching',
+                    hero: 'journal-images/product3.jpg'
+                },
+                marrakech: { 
+                    color: '#C67B5C', 
+                    name: 'Marrakech Chapter', 
+                    location: 'Morocco',
+                    season: 'Fall 2025',
+                    description: 'Bold patterns and rich embroidery inspired by Moroccan textiles and desert sunsets',
+                    embroideryStyle: 'Bold dragon motifs, paisley patterns, rich terracotta threads',
+                    hero: 'journal-images/product1.jpg'
+                },
+                kyoto: { 
+                    color: '#6B8E75', 
+                    name: 'Kyoto Chapter', 
+                    location: 'Japan',
+                    season: 'Spring 2026',
+                    description: 'Serene minimalism with delicate embroidered details inspired by Japanese gardens',
+                    embroideryStyle: 'Minimal florals, subtle details, sage green threads',
+                    hero: 'journal-images/product6.jpg'
+                }
+            };
+
+            // Organizing your Globalifestyle products by travel chapters
+            const products = [
+                // MARRAKECH CHAPTER - Bold embroidery
+                { 
+                    id: 1, 
+                    name: 'Dragon Statement Top', 
+                    chapter: 'marrakech', 
+                    location: 'Marrakech Medina', 
+                    price: 165, 
+                    embroidery: 'Bold dragon motif embroidery',
+                    story: 'Inspired by the vibrant souks of Marrakech, this bold piece features intricate dragon embroidery reminiscent of exotic textiles',
+                    image: 'journal-images/product1.jpg'
+                },
+                { 
+                    id: 2, 
+                    name: 'Paisley Resort Tunic', 
+                    chapter: 'marrakech', 
+                    location: 'Essaouira Coast', 
+                    price: 145, 
+                    embroidery: 'All-over paisley pattern',
+                    story: 'Flowing tunic with traditional paisley embroidery, echoing the patterns found in Moroccan riads',
+                    image: 'journal-images/product2.jpg'
+                },
+                { 
+                    id: 7, 
+                    name: 'Embroidered Caftan', 
+                    chapter: 'marrakech', 
+                    location: 'Atlas Mountains', 
+                    price: 185, 
+                    embroidery: 'Traditional border work',
+                    story: 'Classic caftan silhouette with hand-stitched borders inspired by Berber textiles',
+                    image: 'journal-images/product7.jpg'
+                },
+                
+                // AMALFI CHAPTER - Coastal elegance
+                { 
+                    id: 3, 
+                    name: 'Coastal Linen Top', 
+                    chapter: 'amalfi', 
+                    location: 'Positano Cliffs', 
+                    price: 135, 
+                    embroidery: 'Floral sleeve details',
+                    story: 'Natural linen with delicate floral embroidery inspired by Mediterranean coastal gardens',
+                    image: 'journal-images/product3.jpg'
+                },
+                { 
+                    id: 4, 
+                    name: 'Mediterranean Tunic', 
+                    chapter: 'amalfi', 
+                    location: 'Capri Harbor', 
+                    price: 155, 
+                    embroidery: 'Delicate border embroidery',
+                    story: 'Lightweight resort wear with subtle embroidered hem, perfect for seaside strolls',
+                    image: 'journal-images/product4.jpg'
+                },
+                { 
+                    id: 5, 
+                    name: 'Amalfi Coast Dress', 
+                    chapter: 'amalfi', 
+                    location: 'Ravello Gardens', 
+                    price: 175, 
+                    embroidery: 'Hand-worked neckline',
+                    story: 'Elegant dress featuring traditional embroidery techniques inspired by Italian coastal elegance',
+                    image: 'journal-images/product5.jpg'
+                },
+                
+                // KYOTO CHAPTER - Minimal refinement
+                { 
+                    id: 6, 
+                    name: 'Zen Garden Top', 
+                    chapter: 'kyoto', 
+                    location: 'Kyoto Temple Gardens', 
+                    price: 125, 
+                    embroidery: 'Subtle shoulder detail',
+                    story: 'Clean silhouette with discovered embroidery reflecting Japanese minimalism',
+                    image: 'journal-images/product6.jpg'
+                },
+                { 
+                    id: 8, 
+                    name: 'Sakura Blouse', 
+                    chapter: 'kyoto', 
+                    location: 'Arashiyama Bamboo', 
+                    price: 145, 
+                    embroidery: 'Tonal thread work',
+                    story: 'Refined blouse with barely-there embroidery inspired by cherry blossom petals',
+                    image: 'journal-images/product8.jpg'
+                },
+            ];
+
+            const filteredProducts = selectedChapter === 'all' 
+                ? products 
+                : products.filter(p => p.chapter === selectedChapter);
+
+            const addToCart = () => setCartCount(cartCount + 1);
+
+            const HomePage = () => (
+                <div style={{backgroundColor: '#F9F7F4'}}>
+                    {/* Hero */}
+                    <div className="relative h-screen bg-cover bg-center" style={{backgroundImage: `url(${chapters.marrakech.hero})`}}>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div className="relative h-full flex flex-col items-center justify-end text-white text-center px-4 pb-24">
+                            <div className="flex items-center gap-2 mb-4">
+                                <MapPin />
+                                <span className="text-sm tracking-[0.3em] uppercase">Now Exploring</span>
+                            </div>
+                            <h1 className="font-serif text-7xl md:text-9xl mb-4">Marrakech</h1>
+                            <p className="text-xl mb-12 font-light italic">Bold Embroidery from the Medina</p>
+                            <button 
+                                onClick={() => {
+                                    setSelectedChapter('marrakech');
+                                    setPage('shop');
+                                }}
+                                className="border-2 border-white px-10 py-4 text-xs tracking-widest hover:bg-white hover:text-black transition-all">
+                                EXPLORE THIS CHAPTER
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Current Chapter Banner */}
+                    <div className="py-4 px-6 text-center text-white" style={{backgroundColor: chapters.marrakech.color}}>
+                        <p className="text-sm tracking-widest uppercase">
+                            New Collection · Marrakech Chapter · {chapters.marrakech.season}
+                        </p>
+                    </div>
+
+                    {/* Brand Story */}
+                    <div className="py-32 px-6">
+                        <div className="max-w-4xl mx-auto text-center">
+                            <h2 className="font-serif text-6xl mb-8 text-gray-800">A Traveler's Wardrobe</h2>
+                            <p className="text-xl text-gray-700 leading-relaxed font-light mb-6">
+                                THE JOURNAL by Globalifestyle Fashion brings you hand-embroidered resort wear inspired by destinations around the world.
+                            </p>
+                            <p className="text-xl text-gray-700 leading-relaxed font-light">
+                                From bold Moroccan patterns to serene Japanese minimalism—each collection translates the artistry of a place into wearable stories.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Chapter Previews */}
+                    <div className="px-6 pb-24">
+                        <div className="max-w-7xl mx-auto">
+                            <h2 className="font-serif text-5xl text-center mb-16 text-gray-800">Explore Our Travel Chapters</h2>
+                            <div className="grid md:grid-cols-3 gap-8">
+                                {Object.entries(chapters).map(([key, data]) => (
+                                    <div 
+                                        key={key}
+                                        onClick={() => setPage(key)}
+                                        className="group cursor-pointer"
+                                    >
+                                        <div className="aspect-[3/4] bg-cover bg-center mb-6 relative overflow-hidden" style={{backgroundImage: `url(${data.hero})`}}>
+                                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <MapPin />
+                                                    <span className="text-xs tracking-widest uppercase">{data.location}</span>
+                                                </div>
+                                                <h3 className="font-serif text-4xl mb-2">{data.name}</h3>
+                                                <p className="text-xs tracking-widest uppercase mb-4">{data.season}</p>
+                                                <p className="text-sm font-light">{data.description}</p>
+                                            </div>
+                                        </div>
+                                        <div className="text-center">
+                                            <div className="h-1 w-16 mx-auto mb-4 transition-all group-hover:w-24" style={{backgroundColor: data.color}}></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Featured from Current Chapter */}
+                    <div className="py-24 px-6 bg-white">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="text-center mb-16">
+                                <div className="flex items-center justify-center gap-2 mb-4">
+                                    <MapPin />
+                                    <span className="text-xs tracking-widest uppercase text-gray-500">From Marrakech Chapter</span>
+                                </div>
+                                <h2 className="font-serif text-5xl mb-4 text-gray-800">Bold Medina Collection</h2>
+                            </div>
+                            <div className="grid md:grid-cols-3 gap-8">
+                                {products.filter(p => p.chapter === 'marrakech').map(item => (
+                                    <div key={item.id} className="group">
+                                        <div className="aspect-[3/4] bg-gray-200 mb-4 overflow-hidden">
+                                            <img 
+                                                src={item.image} 
+                                                alt={item.name}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                                            />
+                                        </div>
+                                        <div className="flex items-start gap-2 mb-2">
+                                            <MapPin />
+                                            <div className="flex-1">
+                                                <p className="text-xs tracking-wider text-gray-500">{item.location}</p>
+                                                <h3 className="font-serif text-lg mb-1">{item.name}</h3>
+                                                <p className="text-sm text-gray-600 mb-2 italic">{item.embroidery}</p>
+                                                <p className="text-lg" style={{color: chapters.marrakech.color}}>${item.price}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Newsletter */}
+                    <div className="py-32 px-6 text-center text-white" style={{backgroundColor: chapters.marrakech.color}}>
+                        <div className="max-w-3xl mx-auto">
+                            <h2 className="font-serif text-5xl mb-6 italic">Every Journey Begins with a Single Stitch</h2>
+                            <p className="text-lg mb-10 font-light">
+                                Subscribe to explore each new chapter as we travel the world with Globalifestyle Fashion
+                            </p>
+                            <div className="flex gap-2 max-w-md mx-auto">
+                                <input type="email" placeholder="Your email" className="flex-1 px-6 py-4 text-black" />
+                                <button className="bg-white text-gray-800 px-8 py-4 text-xs tracking-widest hover:bg-gray-100">
+                                    JOIN
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const ChapterPage = (chapterKey) => {
+                const chapter = chapters[chapterKey];
+                const chapterProducts = products.filter(p => p.chapter === chapterKey);
+
+                return (
+                    <div style={{backgroundColor: '#F9F7F4'}}>
+                        {/* Chapter Hero */}
+                        <div className="relative h-[70vh] bg-cover bg-center" style={{backgroundImage: `url(${chapter.hero})`}}>
+                            <div className="absolute inset-0" style={{background: `linear-gradient(to bottom, transparent, ${chapter.color}99)`}}></div>
+                            <div className="relative h-full flex flex-col items-center justify-end text-white text-center px-4 pb-16">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <MapPin />
+                                    <span className="text-sm tracking-widest uppercase">{chapter.location}</span>
+                                </div>
+                                <h1 className="font-serif text-7xl mb-4">{chapter.name}</h1>
+                                <p className="text-lg font-light italic mb-8">{chapter.season}</p>
+                            </div>
+                        </div>
+
+                        {/* Chapter Story */}
+                        <div className="py-24 px-6 bg-white">
+                            <div className="max-w-4xl mx-auto">
+                                <h2 className="font-serif text-5xl mb-8 text-gray-800">The Inspiration</h2>
+                                <p className="text-xl text-gray-700 leading-relaxed font-light mb-6">
+                                    {chapter.description}
+                                </p>
+                                <div className="mt-12">
+                                    <h3 className="font-serif text-3xl mb-4" style={{color: chapter.color}}>Embroidery Style</h3>
+                                    <p className="text-gray-700 font-light text-lg">{chapter.embroideryStyle}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Chapter Products */}
+                        <div className="py-24 px-6">
+                            <div className="max-w-7xl mx-auto">
+                                <h2 className="font-serif text-5xl text-center mb-16 text-gray-800">The Collection</h2>
+                                <div className="grid md:grid-cols-3 gap-12">
+                                    {chapterProducts.map(item => (
+                                        <div key={item.id} className="bg-white p-6 group">
+                                            <div className="aspect-[3/4] bg-gray-200 mb-6 overflow-hidden relative">
+                                                <img 
+                                                    src={item.image} 
+                                                    alt={item.name}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                                                />
+                                                <button className="absolute top-4 right-4 bg-white p-2.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                                                    <Heart />
+                                                </button>
+                                            </div>
+                                            <div className="flex items-start gap-2 mb-2">
+                                                <MapPin />
+                                                <div className="flex-1">
+                                                    <p className="text-xs tracking-wider text-gray-500">{item.location}</p>
+                                                    <h3 className="font-serif text-xl mb-1">{item.name}</h3>
+                                                    <p className="text-sm text-gray-600 mb-2 italic">{item.embroidery}</p>
+                                                    <p className="text-xs text-gray-600 mb-3">{item.story}</p>
+                                                    <div className="flex items-center justify-between pt-3 border-t">
+                                                        <p className="text-lg" style={{color: chapter.color}}>${item.price}</p>
+                                                        <button 
+                                                            onClick={addToCart}
+                                                            className="text-xs tracking-widest uppercase hover:underline"
+                                                        >
+                                                            Add to Cart
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const ShopPage = () => (
+                <div style={{backgroundColor: '#F9F7F4'}} className="min-h-screen py-32 px-6">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h1 className="font-serif text-6xl mb-4 text-gray-800">All Travel Collections</h1>
+                            <p className="text-gray-600 font-light italic">Hand-embroidered resort wear by Globalifestyle Fashion</p>
+                        </div>
+
+                        {/* Chapter Filter */}
+                        <div className="flex justify-center gap-4 mb-16 flex-wrap">
+                            <button 
+                                onClick={() => setSelectedChapter('all')}
+                                className={`px-6 py-2 text-xs tracking-widest uppercase transition-all ${selectedChapter === 'all' ? 'bg-gray-800 text-white' : 'border border-gray-400 text-gray-700'}`}
+                            >
+                                All Chapters
+                            </button>
+                            {Object.entries(chapters).map(([key, data]) => (
+                                <button 
+                                    key={key}
+                                    onClick={() => setSelectedChapter(key)}
+                                    className={`px-6 py-2 text-xs tracking-widest uppercase transition-all`}
+                                    style={selectedChapter === key ? {backgroundColor: data.color, color: 'white'} : {border: '1px solid #9CA3AF', color: '#374151'}}
+                                >
+                                    {data.name}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Products Grid */}
+                        <div className="grid md:grid-cols-3 gap-12">
+                            {filteredProducts.map(item => {
+                                const itemChapter = chapters[item.chapter];
+                                return (
+                                    <div key={item.id} className="bg-white p-6 group">
+                                        <div className="aspect-[3/4] bg-gray-200 mb-6 overflow-hidden relative">
+                                            <img 
+                                                src={item.image} 
+                                                alt={item.name}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                                            />
+                                            <button className="absolute top-4 right-4 bg-white p-2.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+                                                <Heart />
+                                            </button>
+                                            <div className="absolute top-4 left-4 px-3 py-1 text-xs tracking-widest uppercase text-white" style={{backgroundColor: itemChapter.color}}>
+                                                {itemChapter.name}
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-2 mb-2">
+                                            <MapPin />
+                                            <div className="flex-1">
+                                                <p className="text-xs tracking-wider text-gray-500">{item.location}</p>
+                                                <h3 className="font-serif text-xl mb-1">{item.name}</h3>
+                                                <p className="text-sm text-gray-600 mb-2 italic">{item.embroidery}</p>
+                                                <p className="text-xs text-gray-600 mb-3">{item.story}</p>
+                                                <div className="flex items-center justify-between pt-3 border-t">
+                                                    <p className="text-lg" style={{color: itemChapter.color}}>${item.price}</p>
+                                                    <button 
+                                                        onClick={addToCart}
+                                                        className="text-xs tracking-widest uppercase hover:underline"
+                                                    >
+                                                        Add to Cart
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            );
+
+            return (
+                <div className="min-h-screen bg-white">
+                    {/* Header */}
+                    <header className="fixed top-0 w-full bg-white z-50 border-b border-gray-200">
+                        <div className="max-w-7xl mx-auto px-6 py-5">
+                            <div className="flex items-center justify-between">
+                                <div className="cursor-pointer" onClick={() => setPage('home')}>
+                                    <div className="font-serif text-3xl text-gray-800">THE JOURNAL</div>
+                                    <div className="text-[10px] tracking-[0.4em] text-gray-500 uppercase">Travel Collections by Globalifestyle Fashion</div>
+                                </div>
+                                <nav className="flex gap-8 text-xs tracking-[0.2em] uppercase">
+                                    <button onClick={() => setPage('home')} className="text-gray-700 hover:text-black">Home</button>
+                                    <button onClick={() => setPage('shop')} className="text-gray-700 hover:text-black">Shop All</button>
+                                </nav>
+                                <div className="flex items-center gap-5">
+                                    <Search />
+                                    <div className="relative cursor-pointer">
+                                        <ShoppingBag />
+                                        {cartCount > 0 && (
+                                            <span className="absolute -top-2 -right-2 bg-gray-800 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                                {cartCount}
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Main */}
+                    <main className="pt-20">
+                        {page === 'home' && <HomePage />}
+                        {page === 'shop' && <ShopPage />}
+                        {page === 'amalfi' && ChapterPage('amalfi')}
+                        {page === 'marrakech' && ChapterPage('marrakech')}
+                        {page === 'kyoto' && ChapterPage('kyoto')}
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="bg-gray-900 text-white py-16 px-6">
+                        <div className="max-w-7xl mx-auto text-center">
+                            <div className="font-serif text-4xl mb-4">THE JOURNAL</div>
+                            <p className="text-sm text-gray-400 mb-8 italic">Travel Collections by Globalifestyle Fashion</p>
+                            <div className="flex justify-center gap-12 mb-8">
+                                {Object.entries(chapters).map(([key, data]) => (
+                                    <button 
+                                        key={key}
+                                        onClick={() => setPage(key)}
+                                        className="text-xs tracking-widest uppercase text-gray-400 hover:text-white cursor-pointer"
+                                    >
+                                        {data.name}
+                                    </button>
+                                ))}
+                            </div>
+                            <p className="text-xs text-gray-500">© 2024 THE JOURNAL by Globalifestyle Fashion Sdn Bhd</p>
+                            <p className="text-xs text-gray-500 mt-2">Malaysia · Women's Resort Wear · Hand Embroidery Specialists</p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<TheJournalOption4 />, document.getElementById('root'));
+    </script>
+</body>
+</html>
