@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE JOURNAL - Visual Identity with Your Products</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Bodoni Moda', serif; }
+        
+        .embroidered-texture {
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139, 115, 85, 0.03) 10px, rgba(139, 115, 85, 0.03) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(139, 115, 85, 0.03) 10px, rgba(139, 115, 85, 0.03) 20px);
+        }
+        
+        .monogram-circle {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #8B7355;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .monogram-circle::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border: 1px dashed #8B7355;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+        
+        .thread-line {
+            height: 1px;
+            background: repeating-linear-gradient(
+                90deg,
+                #8B7355 0px,
+                #8B7355 5px,
+                transparent 5px,
+                transparent 10px
+            );
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const Heart = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+        );
+
+        const ShoppingBag = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+        );
+
+        const Search = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+        );
+
+        const TheJournalOption3 = () => {
+            const [page, setPage] = useState('home');
+            const [cartCount, setCartCount] = useState(0);
+
+            // Using your actual Globalifestyle Fashion products
+            const products = [
+                { 
+                    id: 1, 
+                    name: 'Hand-Embroidered Statement Top', 
+                    detail: 'Bold dragon motif embroidery', 
+                    price: 165, 
+                    image: 'journal-images/product1.jpg',
+                    description: 'Intricate hand-stitched dragon design on premium fabric'
+                },
+                { 
+                    id: 2, 
+                    name: 'Paisley Embroidered Tunic', 
+                    detail: 'All-over paisley pattern', 
+                    price: 145, 
+                    image: 'journal-images/product2.jpg',
+                    description: 'Flowing tunic with delicate paisley embroidery'
+                },
+                { 
+                    id: 3, 
+                    name: 'Floral Embroidered Linen Top', 
+                    detail: 'Sleeve and neckline details', 
+                    price: 135, 
+                    image: 'journal-images/product3.jpg',
+                    description: 'Natural linen with hand-embroidered floral accents'
+                },
+                { 
+                    id: 4, 
+                    name: 'Embroidered Resort Tunic', 
+                    detail: 'Delicate border embroidery', 
+                    price: 155, 
+                    image: 'journal-images/product4.jpg',
+                    description: 'Lightweight resort wear with subtle embroidered hem'
+                },
+                { 
+                    id: 5, 
+                    name: 'Artisan Embroidered Dress', 
+                    detail: 'Hand-worked neckline and hem', 
+                    price: 175, 
+                    image: 'journal-images/product5.jpg',
+                    description: 'Elegant dress featuring traditional embroidery techniques'
+                },
+                { 
+                    id: 6, 
+                    name: 'Minimal Embroidered Top', 
+                    detail: 'Subtle shoulder detail', 
+                    price: 125, 
+                    image: 'journal-images/product6.jpg',
+                    description: 'Clean silhouette with discovered embroidery'
+                },
+                { 
+                    id: 7, 
+                    name: 'Embroidered Caftan', 
+                    detail: 'Traditional border work', 
+                    price: 185, 
+                    image: 'journal-images/product7.jpg',
+                    description: 'Flowing caftan with hand-stitched details'
+                },
+                { 
+                    id: 8, 
+                    name: 'Delicate Embroidered Blouse', 
+                    detail: 'Tonal thread work', 
+                    price: 145, 
+                    image: 'journal-images/product8.jpg',
+                    description: 'Refined blouse with barely-there embroidery'
+                },
+            ];
+
+            const addToCart = () => setCartCount(cartCount + 1);
+
+            const HomePage = () => (
+                <div className="bg-white">
+                    {/* Hero with product mannequin */}
+                    <div className="relative h-screen">
+                        <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: 'url(journal-images/product3.jpg)'}}>
+                            <div className="absolute inset-0 bg-gradient-to-r from-white/90 to-transparent"></div>
+                        </div>
+                        <div className="relative h-full flex items-center px-6 md:px-12">
+                            <div className="max-w-2xl">
+                                <div className="monogram-circle mb-8 bg-white shadow-lg">
+                                    <span className="font-serif text-4xl" style={{color: '#8B7355'}}>TJ</span>
+                                </div>
+                                <h1 className="font-serif text-6xl md:text-7xl mb-6 font-light" style={{color: '#8B7355'}}>
+                                    The Mark of<br/>Hand Embroidery
+                                </h1>
+                                <div className="thread-line w-32 mb-8"></div>
+                                <p className="text-gray-700 text-lg mb-10 font-light max-w-lg">
+                                    Every piece from Globalifestyle Fashion bears our commitment to artisan quality—minimalist design elevated by hand-embroidered details
+                                </p>
+                                <button 
+                                    onClick={() => setPage('shop')}
+                                    className="px-10 py-4 text-xs tracking-widest uppercase" style={{backgroundColor: '#8B7355', color: 'white'}}>
+                                    EXPLORE COLLECTION
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Brand Identity Section */}
+                    <div className="py-24 px-6 embroidered-texture">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="text-center mb-16">
+                                <div className="monogram-circle mx-auto mb-6">
+                                    <span className="font-serif text-3xl" style={{color: '#8B7355'}}>TJ</span>
+                                </div>
+                                <h2 className="font-serif text-5xl mb-4" style={{color: '#8B7355'}}>Globalifestyle Fashion</h2>
+                                <p className="text-gray-600 font-light max-w-2xl mx-auto">Specializing in women's resort wear with exquisite hand embroidery—from bold statement pieces to subtle artisan details</p>
+                            </div>
+                            <div className="grid md:grid-cols-3 gap-16 text-center">
+                                <div>
+                                    <div className="monogram-circle mx-auto mb-6" style={{borderColor: '#C67B5C'}}>
+                                        <span className="text-3xl" style={{color: '#C67B5C'}}>✦</span>
+                                    </div>
+                                    <h3 className="font-serif text-2xl mb-3" style={{color: '#8B7355'}}>Minimalist & Bold</h3>
+                                    <p className="text-gray-600 font-light">From subtle tonal work to statement embroidery</p>
+                                </div>
+                                <div>
+                                    <div className="monogram-circle mx-auto mb-6" style={{borderColor: '#C67B5C'}}>
+                                        <span className="text-3xl" style={{color: '#C67B5C'}}>✦</span>
+                                    </div>
+                                    <h3 className="font-serif text-2xl mb-3" style={{color: '#8B7355'}}>Artisan Craft</h3>
+                                    <p className="text-gray-600 font-light">Hand-finished by skilled embroidery craftspeople</p>
+                                </div>
+                                <div>
+                                    <div className="monogram-circle mx-auto mb-6" style={{borderColor: '#C67B5C'}}>
+                                        <span className="text-3xl" style={{color: '#C67B5C'}}>✦</span>
+                                    </div>
+                                    <h3 className="font-serif text-2xl mb-3" style={{color: '#8B7355'}}>Resort Specialists</h3>
+                                    <p className="text-gray-600 font-light">Designed for effortless elegance and comfort</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Featured Products Grid */}
+                    <div className="py-24 px-6 bg-white">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="text-center mb-16">
+                                <div className="monogram-circle mx-auto mb-6">
+                                    <span className="font-serif text-3xl" style={{color: '#8B7355'}}>TJ</span>
+                                </div>
+                                <h2 className="font-serif text-5xl mb-4" style={{color: '#8B7355'}}>Current Collection</h2>
+                                <div className="thread-line w-24 mx-auto"></div>
+                            </div>
+                            <div className="grid md:grid-cols-3 gap-8">
+                                {products.slice(0, 6).map(item => (
+                                    <div key={item.id} className="group relative bg-white">
+                                        <div className="absolute -top-4 -right-4 z-10 monogram-circle bg-white shadow-lg opacity-0 group-hover:opacity-100 transition-all" style={{width: '60px', height: '60px'}}>
+                                            <span className="font-serif text-xl" style={{color: '#8B7355'}}>TJ</span>
+                                        </div>
+                                        <div className="aspect-[3/4] bg-gray-200 mb-4 overflow-hidden border-2" style={{borderColor: '#E8DFD5'}}>
+                                            <img 
+                                                src={item.image} 
+                                                alt={item.name}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                                            />
+                                        </div>
+                                        <div className="text-center p-4">
+                                            <h3 className="font-serif text-xl mb-2" style={{color: '#8B7355'}}>{item.name}</h3>
+                                            <div className="thread-line w-16 mx-auto mb-3"></div>
+                                            <p className="text-sm text-gray-600 mb-2 italic">{item.detail}</p>
+                                            <p className="text-xs text-gray-500 mb-3">{item.description}</p>
+                                            <p className="text-lg font-medium" style={{color: '#C67B5C'}}>${item.price}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Monogram Story */}
+                    <div className="py-32 px-6" style={{backgroundColor: '#8B7355'}}>
+                        <div className="max-w-4xl mx-auto text-center text-white">
+                            <div className="monogram-circle mx-auto mb-8 bg-white/10 backdrop-blur" style={{width: '120px', height: '120px', borderColor: 'white'}}>
+                                <span className="font-serif text-5xl text-white">TJ</span>
+                            </div>
+                            <h2 className="font-serif text-5xl mb-6 italic">Globalifestyle Fashion x THE JOURNAL</h2>
+                            <p className="text-xl font-light leading-relaxed">
+                                From Malaysia to the world—resort wear that celebrates the artistry of hand embroidery, where every stitch tells a story
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const ShopPage = () => (
+                <div style={{backgroundColor: '#F9F7F4'}} className="min-h-screen py-32 px-6">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-16">
+                            <div className="monogram-circle mx-auto mb-6">
+                                <span className="font-serif text-3xl" style={{color: '#8B7355'}}>TJ</span>
+                            </div>
+                            <h1 className="font-serif text-6xl mb-4" style={{color: '#8B7355'}}>The Collection</h1>
+                            <div className="thread-line w-24 mx-auto mb-6"></div>
+                            <p className="text-gray-600 font-light">Hand-embroidered resort wear by Globalifestyle Fashion</p>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-12">
+                            {products.map(item => (
+                                <div key={item.id} className="group relative bg-white p-6">
+                                    <div className="absolute -top-4 -right-4 z-10 monogram-circle bg-white shadow-lg opacity-0 group-hover:opacity-100 transition-all" style={{width: '60px', height: '60px'}}>
+                                        <span className="font-serif text-xl" style={{color: '#8B7355'}}>TJ</span>
+                                    </div>
+                                    <div className="aspect-[3/4] bg-gray-200 mb-4 overflow-hidden border-2" style={{borderColor: '#E8DFD5'}}>
+                                        <img 
+                                            src={item.image} 
+                                            alt={item.name}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                                        />
+                                    </div>
+                                    <button className="absolute top-10 right-10 bg-white p-2.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-10">
+                                        <Heart />
+                                    </button>
+                                    <div className="text-center">
+                                        <h3 className="font-serif text-xl mb-2" style={{color: '#8B7355'}}>{item.name}</h3>
+                                        <div className="thread-line w-16 mx-auto mb-3"></div>
+                                        <p className="text-sm text-gray-600 mb-2 italic">{item.detail}</p>
+                                        <p className="text-xs text-gray-500 mb-3">{item.description}</p>
+                                        <div className="flex items-center justify-between pt-4 border-t" style={{borderColor: '#E8DFD5'}}>
+                                            <p className="text-lg font-medium" style={{color: '#C67B5C'}}>${item.price}</p>
+                                            <button 
+                                                onClick={addToCart}
+                                                className="text-xs tracking-widest uppercase hover:underline"
+                                            >
+                                                Add to Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+
+            return (
+                <div className="min-h-screen bg-white">
+                    {/* Header */}
+                    <header className="fixed top-0 w-full bg-white z-50 border-b" style={{borderColor: '#E8DFD5'}}>
+                        <div className="max-w-7xl mx-auto px-6 py-4">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-4 cursor-pointer" onClick={() => setPage('home')}>
+                                    <div className="monogram-circle">
+                                        <span className="font-serif text-2xl" style={{color: '#8B7355'}}>TJ</span>
+                                    </div>
+                                    <div>
+                                        <div className="font-serif text-2xl tracking-wider" style={{color: '#8B7355'}}>THE JOURNAL</div>
+                                        <div className="text-[10px] tracking-[0.3em] text-gray-500">BY GLOBALIFESTYLE FASHION</div>
+                                    </div>
+                                </div>
+                                <nav className="flex gap-8 text-xs tracking-[0.2em] uppercase">
+                                    <button onClick={() => setPage('home')} style={{color: '#8B7355'}} className="hover:opacity-70">Home</button>
+                                    <button onClick={() => setPage('shop')} style={{color: '#8B7355'}} className="hover:opacity-70">Shop</button>
+                                </nav>
+                                <div className="flex items-center gap-5">
+                                    <Search />
+                                    <div className="relative cursor-pointer">
+                                        <ShoppingBag />
+                                        {cartCount > 0 && (
+                                            <span className="absolute -top-2 -right-2 text-xs rounded-full w-5 h-5 flex items-center justify-center text-white" style={{backgroundColor: '#8B7355'}}>
+                                                {cartCount}
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Main */}
+                    <main className="pt-24">
+                        {page === 'home' && <HomePage />}
+                        {page === 'shop' && <ShopPage />}
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="bg-gray-900 text-white py-16 px-6">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="flex items-center justify-center gap-6 mb-8">
+                                <div className="monogram-circle" style={{borderColor: 'white', width: '60px', height: '60px'}}>
+                                    <span className="font-serif text-2xl text-white">TJ</span>
+                                </div>
+                                <div>
+                                    <div className="font-serif text-3xl">THE JOURNAL</div>
+                                    <div className="text-xs tracking-widest text-gray-400">BY GLOBALIFESTYLE FASHION</div>
+                                </div>
+                            </div>
+                            <div className="thread-line w-32 mx-auto mb-8" style={{background: 'repeating-linear-gradient(90deg, white 0px, white 5px, transparent 5px, transparent 10px)'}}></div>
+                            <p className="text-center text-sm text-gray-400">© 2024 THE JOURNAL by Globalifestyle Fashion Sdn Bhd. All rights reserved.</p>
+                            <p className="text-center text-xs text-gray-500 mt-2">Malaysia-based fashion buying house specializing in women's resort wear and embroidery</p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<TheJournalOption3 />, document.getElementById('root'));
+    </script>
+</body>
+</html>
