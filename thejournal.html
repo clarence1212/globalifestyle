@@ -8,17 +8,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Jost', sans-serif; 
             font-weight: 300;
+            font-size: 16px;
             background: #FDFCFA; 
             color: #3D3D3D;
             overflow-x: hidden;
         }
-        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-serif { font-family: 'Playfair Display', 'Cormorant Garamond', serif; }
         
         :root {
             --sage: #B8D4CE;
@@ -116,10 +117,11 @@
         .btn-primary {
             background: var(--sage-deeper);
             color: white;
-            padding: 16px 40px;
-            letter-spacing: 2px;
+            padding: 18px 48px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 11px;
+            font-size: 13px;
+            font-weight: 400;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -143,10 +145,11 @@
         .btn-outline {
             border: 1px solid var(--text-green);
             color: var(--text-green);
-            padding: 14px 36px;
-            letter-spacing: 2px;
+            padding: 16px 44px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 11px;
+            font-size: 13px;
+            font-weight: 400;
             transition: all 0.4s ease;
             background: transparent;
         }
@@ -159,10 +162,10 @@
         .tag {
             background: var(--sage);
             color: var(--text-green);
-            padding: 6px 16px;
-            font-family: 'Cormorant Garamond', serif;
+            padding: 10px 24px;
+            font-family: 'Playfair Display', 'Cormorant Garamond', serif;
             font-style: italic;
-            font-size: 14px;
+            font-size: 16px;
         }
         
         /* Section transitions */
@@ -254,7 +257,7 @@
                                     onClick={() => setCurrentPage('home')}
                                     className="group"
                                 >
-                                    <span className={`font-serif text-2xl md:text-3xl tracking-wider transition-colors ${
+                                    <span className={`font-serif text-3xl md:text-4xl tracking-wider transition-colors ${
                                         isScrolled || currentPage !== 'home' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                         The Journal
@@ -267,7 +270,7 @@
                                         <button
                                             key={item.id}
                                             onClick={() => setCurrentPage(item.id)}
-                                            className={`nav-link text-xs tracking-[0.2em] uppercase transition-colors ${
+                                            className={`nav-link text-sm tracking-[0.15em] uppercase transition-colors ${
                                                 isScrolled || currentPage !== 'home'
                                                     ? (currentPage === item.id ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900')
                                                     : (currentPage === item.id ? 'text-white' : 'text-white/70 hover:text-white')
@@ -294,12 +297,12 @@
                     
                     {/* Mobile Menu */}
                     <div className={`mobile-menu fixed inset-0 z-40 bg-white ${mobileMenuOpen ? 'open' : ''}`}>
-                        <div className="flex flex-col items-center justify-center h-full gap-8">
+                        <div className="flex flex-col items-center justify-center h-full gap-10">
                             {navItems.map(item => (
                                 <button
                                     key={item.id}
                                     onClick={() => setCurrentPage(item.id)}
-                                    className={`font-serif text-3xl ${currentPage === item.id ? 'text-gray-900' : 'text-gray-400'}`}
+                                    className={`font-serif text-4xl ${currentPage === item.id ? 'text-gray-900' : 'text-gray-400'}`}
                                 >
                                     {item.label}
                                 </button>
@@ -325,12 +328,12 @@
                             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50"></div>
                         </div>
                         
-                        <div className="relative z-10 text-center px-6 max-w-4xl">
-                            <p className="text-white/90 text-xs tracking-[0.4em] uppercase mb-6 animate-fade-up">Artisan Minimalism</p>
-                            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 animate-fade-up delay-100" style={{fontWeight: 300, textShadow: '0 2px 20px rgba(0,0,0,0.3)'}}>
+                        <div className="relative z-10 text-center px-6 max-w-5xl">
+                            <p className="text-white/90 text-base md:text-lg tracking-[0.4em] uppercase mb-8 animate-fade-up">Artisan Minimalism</p>
+                            <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-white mb-8 animate-fade-up delay-100" style={{fontWeight: 400, textShadow: '0 2px 20px rgba(0,0,0,0.3)'}}>
                                 The Journal
                             </h1>
-                            <p className="font-serif text-xl md:text-2xl text-white/95 italic mb-10 animate-fade-up delay-200" style={{textShadow: '0 1px 10px rgba(0,0,0,0.3)'}}>
+                            <p className="font-serif text-2xl md:text-3xl text-white/95 italic mb-12 animate-fade-up delay-200" style={{textShadow: '0 1px 10px rgba(0,0,0,0.3)'}}>
                                 Each piece tells a story of memorable details
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
@@ -354,14 +357,14 @@
                     
                     {/* Brand Statement */}
                     <section className="py-32 px-6 bg-white">
-                        <div className="max-w-4xl mx-auto text-center">
-                            <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-8">Philosophy</p>
-                            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-relaxed text-gray-800 mb-8" style={{fontWeight: 300}}>
+                        <div className="max-w-5xl mx-auto text-center">
+                            <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-8">Philosophy</p>
+                            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-relaxed text-gray-800 mb-10" style={{fontWeight: 400}}>
                                 A brand that embraces <span className="italic">minimalism</span> blending with 
                                 pieces that feature intricate <span className="italic">artisanal crafts</span>
                             </h2>
-                            <div className="w-20 h-px bg-gray-300 mx-auto mb-8"></div>
-                            <p className="text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto">
+                            <div className="w-24 h-px bg-gray-300 mx-auto mb-10"></div>
+                            <p className="text-gray-500 text-xl leading-relaxed max-w-3xl mx-auto">
                                 The collection is carefree, modern yet dreamy and defined by an unconventional 
                                 sophistication that makes every piece feel like a statement.
                             </p>
@@ -369,9 +372,9 @@
                     </section>
                     
                     {/* Featured Grid */}
-                    <section className="py-20 px-6" style={{backgroundColor: '#F5F3F0'}}>
+                    <section className="py-24 px-6" style={{backgroundColor: '#F5F3F0'}}>
                         <div className="max-w-7xl mx-auto">
-                            <div className="grid md:grid-cols-3 gap-8">
+                            <div className="grid md:grid-cols-3 gap-10">
                                 {[
                                     { img: 'page2_img1.jpeg', label: 'Relaxed', desc: 'Effortless silhouettes' },
                                     { img: 'page2_img7.jpeg', label: 'Artisan Crafts', desc: 'Hand-finished details' },
@@ -381,8 +384,8 @@
                                         <div className="img-premium aspect-[3/4] mb-6">
                                             <img src={`images/${item.img}`} alt={item.label} className="w-full h-full object-cover" />
                                         </div>
-                                        <span className="tag mb-3 inline-block">{item.label}</span>
-                                        <p className="text-gray-600 text-sm">{item.desc}</p>
+                                        <span className="tag mb-4 inline-block">{item.label}</span>
+                                        <p className="text-gray-600 text-base">{item.desc}</p>
                                     </div>
                                 ))}
                             </div>
@@ -390,31 +393,31 @@
                     </section>
                     
                     {/* Mood Strip */}
-                    <section className="py-4 overflow-hidden" style={{backgroundColor: 'var(--sage)'}}>
-                        <div className="flex gap-16 animate-scroll whitespace-nowrap">
+                    <section className="py-6 overflow-hidden" style={{backgroundColor: 'var(--sage)'}}>
+                        <div className="flex gap-20 animate-scroll whitespace-nowrap">
                             {['Minimalism', 'Effortless', 'Artisan Crafts', 'Contemporary', 'Timeless', 'Subtle & Tonal', 'Relaxed', 'Sophisticated'].map((word, i) => (
-                                <span key={i} className="font-serif text-2xl italic text-white/80 px-4">{word}</span>
+                                <span key={i} className="font-serif text-3xl italic text-white/80 px-6">{word}</span>
                             ))}
                             {['Minimalism', 'Effortless', 'Artisan Crafts', 'Contemporary', 'Timeless', 'Subtle & Tonal', 'Relaxed', 'Sophisticated'].map((word, i) => (
-                                <span key={`r-${i}`} className="font-serif text-2xl italic text-white/80 px-4">{word}</span>
+                                <span key={`r-${i}`} className="font-serif text-3xl italic text-white/80 px-6">{word}</span>
                             ))}
                         </div>
                     </section>
                     
                     {/* Collections Preview */}
-                    <section className="py-24 px-6 bg-white">
+                    <section className="py-28 px-6 bg-white">
                         <div className="max-w-7xl mx-auto">
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
                                 <div>
-                                    <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-4">Featured</p>
-                                    <h2 className="font-serif text-4xl md:text-5xl text-gray-800">The Collection</h2>
+                                    <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-4">Featured</p>
+                                    <h2 className="font-serif text-5xl md:text-6xl text-gray-800">The Collection</h2>
                                 </div>
                                 <button 
                                     onClick={() => setCurrentPage('collections')}
-                                    className="mt-6 md:mt-0 text-sm tracking-wider uppercase text-gray-500 hover:text-gray-800 transition-colors flex items-center gap-2"
+                                    className="mt-6 md:mt-0 text-base tracking-wider uppercase text-gray-500 hover:text-gray-800 transition-colors flex items-center gap-3"
                                 >
                                     View All
-                                    <span>→</span>
+                                    <span className="text-xl">→</span>
                                 </button>
                             </div>
                             
@@ -429,12 +432,12 @@
                     </section>
                     
                     {/* Color Palette Preview */}
-                    <section className="py-24 px-6" style={{backgroundColor: '#F5F3F0'}}>
+                    <section className="py-28 px-6" style={{backgroundColor: '#F5F3F0'}}>
                         <div className="max-w-5xl mx-auto text-center">
-                            <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-4">Palette</p>
-                            <h2 className="font-serif text-4xl text-gray-800 mb-12">Timeless Neutrals</h2>
+                            <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-4">Palette</p>
+                            <h2 className="font-serif text-5xl text-gray-800 mb-14">Timeless Neutrals</h2>
                             
-                            <div className="flex justify-center gap-6 flex-wrap mb-8">
+                            <div className="flex justify-center gap-8 flex-wrap mb-10">
                                 {[
                                     { name: 'Oatmeal', color: '#D4CFC7' },
                                     { name: 'Taupe', color: '#A39B8B' },
@@ -444,24 +447,24 @@
                                     { name: 'Teal', color: '#5B8A8A' },
                                 ].map((c, i) => (
                                     <div key={i} className="text-center">
-                                        <div className="swatch mx-auto mb-3 shadow-md" style={{backgroundColor: c.color}}></div>
-                                        <span className="text-xs tracking-wider uppercase text-gray-500">{c.name}</span>
+                                        <div className="swatch mx-auto mb-4 shadow-md" style={{backgroundColor: c.color}}></div>
+                                        <span className="text-sm tracking-wider uppercase text-gray-500">{c.name}</span>
                                     </div>
                                 ))}
                             </div>
                             
-                            <p className="text-gray-500 text-sm">Muted & harmonious colours that transcend seasons</p>
+                            <p className="text-gray-500 text-base">Muted & harmonious colours that transcend seasons</p>
                         </div>
                     </section>
                     
                     {/* CTA Section */}
-                    <section className="relative py-32 px-6 overflow-hidden" style={{backgroundColor: '#9FB8AD'}}>
+                    <section className="relative py-36 px-6 overflow-hidden" style={{backgroundColor: '#9FB8AD'}}>
                         <div className="absolute inset-0 opacity-20">
                             <img src="images/page3_img7.jpeg" alt="" className="w-full h-full object-cover" />
                         </div>
                         <div className="relative z-10 max-w-3xl mx-auto text-center">
-                            <h2 className="font-serif text-4xl md:text-5xl text-white mb-6">Discover Your Style</h2>
-                            <p className="text-white/80 text-lg mb-10">Explore our collections of artisan-crafted pieces</p>
+                            <h2 className="font-serif text-5xl md:text-6xl text-white mb-8">Discover Your Style</h2>
+                            <p className="text-white/80 text-xl mb-12">Explore our collections of artisan-crafted pieces</p>
                             <button onClick={() => setCurrentPage('collections')} className="btn-primary bg-white !text-gray-800">
                                 <span>Shop Collections</span>
                             </button>
@@ -474,32 +477,32 @@
             const StoryPage = () => (
                 <div className="pt-24 animate-fade">
                     {/* Hero */}
-                    <section className="py-20 px-6 bg-white">
+                    <section className="py-24 px-6 bg-white">
                         <div className="max-w-4xl mx-auto text-center">
-                            <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-6">Our Story</p>
-                            <h1 className="font-serif text-5xl md:text-6xl text-gray-800 mb-8">The Journal</h1>
-                            <div className="w-20 h-px bg-gray-300 mx-auto"></div>
+                            <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-6">Our Story</p>
+                            <h1 className="font-serif text-6xl md:text-7xl text-gray-800 mb-8">The Journal</h1>
+                            <div className="w-24 h-px bg-gray-300 mx-auto"></div>
                         </div>
                     </section>
                     
                     {/* Story Content */}
-                    <section className="py-16 px-6">
+                    <section className="py-20 px-6">
                         <div className="max-w-6xl mx-auto">
-                            <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+                            <div className="grid md:grid-cols-2 gap-20 items-center mb-28">
                                 <div className="img-premium aspect-[4/5]">
                                     <img src="images/page1_img1.jpeg" alt="Brand story" className="w-full h-full object-cover" />
                                 </div>
                                 <div>
-                                    <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-6">Philosophy</p>
-                                    <h2 className="font-serif text-3xl md:text-4xl text-gray-800 mb-6 leading-relaxed">
+                                    <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-6">Philosophy</p>
+                                    <h2 className="font-serif text-4xl md:text-5xl text-gray-800 mb-8 leading-tight">
                                         Embracing <span className="italic">minimalism</span> with intricate <span className="italic">artisanal crafts</span>
                                     </h2>
-                                    <p className="text-gray-600 leading-relaxed mb-6">
+                                    <p className="text-gray-600 text-lg leading-relaxed mb-6">
                                         The Journal is a brand that believes in the power of subtle details. Each piece 
                                         tells a story of memorable craftsmanship, where modern minimalism meets 
                                         traditional artisan techniques.
                                     </p>
-                                    <p className="text-gray-600 leading-relaxed">
+                                    <p className="text-gray-600 text-lg leading-relaxed">
                                         The collection is carefree, modern yet dreamy and defined by an unconventional 
                                         sophistication that makes every piece feel like a statement.
                                     </p>
@@ -508,11 +511,11 @@
                             
                             {/* Mood & Concept */}
                             <div className="text-center mb-16">
-                                <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-4">Mood & Concept</p>
-                                <h3 className="font-serif text-3xl text-gray-800">Our Pillars</h3>
+                                <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-4">Mood & Concept</p>
+                                <h3 className="font-serif text-4xl text-gray-800">Our Pillars</h3>
                             </div>
                             
-                            <div className="grid md:grid-cols-5 gap-6 mb-24">
+                            <div className="grid md:grid-cols-5 gap-8 mb-28">
                                 {[
                                     { img: 'page2_img1.jpeg', label: 'Relaxed' },
                                     { img: 'page2_img5.jpeg', label: 'Effortless' },
@@ -521,7 +524,7 @@
                                     { img: 'page2_img3.jpeg', label: 'Subtle & Tonal' }
                                 ].map((item, i) => (
                                     <div key={i} className="text-center">
-                                        <div className="img-premium aspect-[3/4] mb-4">
+                                        <div className="img-premium aspect-[3/4] mb-5">
                                             <img src={`images/${item.img}`} alt={item.label} className="w-full h-full object-cover" />
                                         </div>
                                         <span className="tag">{item.label}</span>
@@ -530,8 +533,8 @@
                             </div>
                             
                             {/* Quote */}
-                            <div className="max-w-3xl mx-auto text-center py-16 border-t border-b border-gray-200">
-                                <p className="font-serif text-2xl md:text-3xl text-gray-700 italic leading-relaxed">
+                            <div className="max-w-4xl mx-auto text-center py-20 border-t border-b border-gray-200">
+                                <p className="font-serif text-3xl md:text-4xl text-gray-700 italic leading-relaxed">
                                     "Easy to wear and put together to create a look that is effortlessly stylish"
                                 </p>
                             </div>
@@ -567,11 +570,11 @@
                 return (
                     <div className="pt-24 animate-fade">
                         {/* Header */}
-                        <section className="py-20 px-6 bg-white">
+                        <section className="py-24 px-6 bg-white">
                             <div className="max-w-4xl mx-auto text-center">
-                                <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-6">Discover</p>
-                                <h1 className="font-serif text-5xl md:text-6xl text-gray-800 mb-8">Collections</h1>
-                                <p className="text-gray-500 max-w-xl mx-auto">
+                                <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-6">Discover</p>
+                                <h1 className="font-serif text-6xl md:text-7xl text-gray-800 mb-8">Collections</h1>
+                                <p className="text-gray-500 text-xl max-w-xl mx-auto">
                                     Explore our curated selection of artisan-crafted pieces, each designed with 
                                     meticulous attention to detail.
                                 </p>
@@ -579,14 +582,14 @@
                         </section>
                         
                         {/* Filter */}
-                        <section className="sticky top-20 z-30 bg-white border-b border-gray-100 py-4 px-6">
+                        <section className="sticky top-20 z-30 bg-white border-b border-gray-100 py-5 px-6">
                             <div className="max-w-7xl mx-auto">
-                                <div className="flex gap-6 overflow-x-auto pb-2 justify-center">
+                                <div className="flex gap-8 overflow-x-auto pb-2 justify-center">
                                     {categories.map(cat => (
                                         <button
                                             key={cat.id}
                                             onClick={() => setActiveCategory(cat.id)}
-                                            className={`text-xs tracking-widest uppercase whitespace-nowrap transition-all pb-2 border-b-2 ${
+                                            className={`text-sm tracking-widest uppercase whitespace-nowrap transition-all pb-2 border-b-2 ${
                                                 activeCategory === cat.id 
                                                     ? 'text-gray-900 border-gray-900' 
                                                     : 'text-gray-400 border-transparent hover:text-gray-600'
@@ -619,11 +622,11 @@
             const CraftsmanshipPage = () => (
                 <div className="pt-24 animate-fade">
                     {/* Header */}
-                    <section className="py-20 px-6 bg-white">
+                    <section className="py-24 px-6 bg-white">
                         <div className="max-w-4xl mx-auto text-center">
-                            <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-6">The Art</p>
-                            <h1 className="font-serif text-5xl md:text-6xl text-gray-800 mb-8">Craftsmanship</h1>
-                            <p className="text-gray-500 max-w-xl mx-auto">
+                            <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-6">The Art</p>
+                            <h1 className="font-serif text-6xl md:text-7xl text-gray-800 mb-8">Craftsmanship</h1>
+                            <p className="text-gray-500 text-xl max-w-xl mx-auto">
                                 Every detail matters. From subtle embroidery to delicate trims, 
                                 our pieces are crafted with intention.
                             </p>
@@ -631,26 +634,26 @@
                     </section>
                     
                     {/* Key Characteristics */}
-                    <section className="py-16 px-6" style={{backgroundColor: '#F5F3F0'}}>
+                    <section className="py-20 px-6" style={{backgroundColor: '#F5F3F0'}}>
                         <div className="max-w-6xl mx-auto">
-                            <div className="grid md:grid-cols-2 gap-16 items-center">
+                            <div className="grid md:grid-cols-2 gap-20 items-center">
                                 <div>
-                                    <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-4">Key Characteristics</p>
-                                    <h2 className="font-serif text-3xl text-gray-800 mb-8">Subtle Details</h2>
-                                    <ul className="space-y-4">
+                                    <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-4">Key Characteristics</p>
+                                    <h2 className="font-serif text-4xl text-gray-800 mb-10">Subtle Details</h2>
+                                    <ul className="space-y-5">
                                         {['Washed Look', 'Soft & Smooth Hand Feel', 'Embroidery & Embellishments', 'Delicate Trims', 'Minimal Detailing'].map((item, i) => (
                                             <li key={i} className="flex items-center gap-4">
                                                 <span className="w-2 h-2 bg-sage-dark rounded-full" style={{backgroundColor: 'var(--sage-dark)'}}></span>
-                                                <span className="text-gray-600">{item}</span>
+                                                <span className="text-gray-600 text-lg">{item}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-2 gap-5">
                                     <div className="img-premium aspect-square">
                                         <img src="images/page6_img4.jpeg" alt="Detail" className="w-full h-full object-cover" />
                                     </div>
-                                    <div className="img-premium aspect-square mt-8">
+                                    <div className="img-premium aspect-square mt-10">
                                         <img src="images/page6_img5.jpeg" alt="Detail" className="w-full h-full object-cover" />
                                     </div>
                                 </div>
@@ -659,80 +662,80 @@
                     </section>
                     
                     {/* Embroidery Types */}
-                    <section className="py-20 px-6 bg-white">
+                    <section className="py-24 px-6 bg-white">
                         <div className="max-w-6xl mx-auto">
                             <div className="text-center mb-16">
-                                <h2 className="font-serif text-3xl text-gray-800">Embroidery Techniques</h2>
+                                <h2 className="font-serif text-4xl text-gray-800">Embroidery Techniques</h2>
                             </div>
                             
-                            <div className="grid md:grid-cols-3 gap-8 mb-16">
+                            <div className="grid md:grid-cols-3 gap-10 mb-16">
                                 <div className="text-center">
                                     <div className="img-premium aspect-[3/4] mb-6">
                                         <img src="images/page8_img1.jpeg" alt="Subtle embroidery" className="w-full h-full object-cover" />
                                     </div>
-                                    <h3 className="font-serif text-xl text-gray-800 mb-2">Subtle & Tonal</h3>
-                                    <p className="text-gray-500 text-sm">Understated elegance in harmonious colours</p>
+                                    <h3 className="font-serif text-2xl text-gray-800 mb-3">Subtle & Tonal</h3>
+                                    <p className="text-gray-500 text-base">Understated elegance in harmonious colours</p>
                                 </div>
                                 <div className="text-center">
                                     <div className="img-premium aspect-[3/4] mb-6">
                                         <img src="images/page9_img3.jpeg" alt="3D embroidery" className="w-full h-full object-cover" />
                                     </div>
-                                    <h3 className="font-serif text-xl text-gray-800 mb-2">3D Textured</h3>
-                                    <p className="text-gray-500 text-sm">Dimensional effects on jersey & knitwear</p>
+                                    <h3 className="font-serif text-2xl text-gray-800 mb-3">3D Textured</h3>
+                                    <p className="text-gray-500 text-base">Dimensional effects on jersey & knitwear</p>
                                 </div>
                                 <div className="text-center">
                                     <div className="img-premium aspect-[3/4] mb-6">
                                         <img src="images/page12_img2.jpeg" alt="Glitter embroidery" className="w-full h-full object-cover" />
                                     </div>
-                                    <h3 className="font-serif text-xl text-gray-800 mb-2">Glitter Embellishments</h3>
-                                    <p className="text-gray-500 text-sm">Subtle sparkle for special moments</p>
+                                    <h3 className="font-serif text-2xl text-gray-800 mb-3">Glitter Embellishments</h3>
+                                    <p className="text-gray-500 text-base">Subtle sparkle for special moments</p>
                                 </div>
                             </div>
                         </div>
                     </section>
                     
                     {/* Materials */}
-                    <section className="py-20 px-6" style={{backgroundColor: 'var(--sage)', opacity: 0.9}}>
+                    <section className="py-24 px-6" style={{backgroundColor: 'var(--sage)', opacity: 0.9}}>
                         <div className="max-w-5xl mx-auto text-center">
-                            <p className="text-xs tracking-[0.3em] uppercase text-white/70 mb-4">Premium</p>
-                            <h2 className="font-serif text-4xl text-white mb-12">Key Fabric Materials</h2>
+                            <p className="text-sm tracking-[0.3em] uppercase text-white/70 mb-4">Premium</p>
+                            <h2 className="font-serif text-5xl text-white mb-14">Key Fabric Materials</h2>
                             
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-white">
                                 <div>
-                                    <p className="font-serif text-xl mb-4">Linen</p>
-                                    <p className="text-sm text-white/70">100% Linen</p>
-                                    <p className="text-sm text-white/70">Linen Tencel</p>
-                                    <p className="text-sm text-white/70">Linen Lyocell</p>
-                                    <p className="text-sm text-white/70">Linen Viscose</p>
+                                    <p className="font-serif text-2xl mb-5">Linen</p>
+                                    <p className="text-base text-white/70">100% Linen</p>
+                                    <p className="text-base text-white/70">Linen Tencel</p>
+                                    <p className="text-base text-white/70">Linen Lyocell</p>
+                                    <p className="text-base text-white/70">Linen Viscose</p>
                                 </div>
                                 <div>
-                                    <p className="font-serif text-xl mb-4">Cotton</p>
-                                    <p className="text-sm text-white/70">100% Cotton</p>
-                                    <p className="text-sm text-white/70">Cotton Spandex</p>
-                                    <p className="text-sm text-white/70">Cotton Linen</p>
+                                    <p className="font-serif text-2xl mb-5">Cotton</p>
+                                    <p className="text-base text-white/70">100% Cotton</p>
+                                    <p className="text-base text-white/70">Cotton Spandex</p>
+                                    <p className="text-base text-white/70">Cotton Linen</p>
                                 </div>
                                 <div>
-                                    <p className="font-serif text-xl mb-4">Blends</p>
-                                    <p className="text-sm text-white/70">Linen Elasthane</p>
-                                    <p className="text-sm text-white/70">Cotton Linen</p>
+                                    <p className="font-serif text-2xl mb-5">Blends</p>
+                                    <p className="text-base text-white/70">Linen Elasthane</p>
+                                    <p className="text-base text-white/70">Cotton Linen</p>
                                 </div>
                                 <div>
-                                    <p className="font-serif text-xl mb-4">Natural</p>
-                                    <p className="text-sm text-white/70">100% Ramie</p>
+                                    <p className="font-serif text-2xl mb-5">Natural</p>
+                                    <p className="text-base text-white/70">100% Ramie</p>
                                 </div>
                             </div>
                         </div>
                     </section>
                     
                     {/* Colour Palette */}
-                    <section className="py-24 px-6 bg-white">
+                    <section className="py-28 px-6 bg-white">
                         <div className="max-w-6xl mx-auto">
                             <div className="text-center mb-16">
-                                <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-4">Palette</p>
-                                <h2 className="font-serif text-4xl text-gray-800">Colour Stories</h2>
+                                <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-4">Palette</p>
+                                <h2 className="font-serif text-5xl text-gray-800">Colour Stories</h2>
                             </div>
                             
-                            <div className="grid md:grid-cols-4 gap-8">
+                            <div className="grid md:grid-cols-4 gap-10">
                                 {[
                                     { name: 'Timeless Neutral', colors: ['#1C1C1C', '#D4CFC7', '#A39B8B', '#6B5344', '#F5EFE0'] },
                                     { name: 'Bloomsoft', colors: ['#9A8B7A', '#8B2346', '#E8C4C4', '#FAF8F5', '#C9B99A'] },
@@ -741,9 +744,9 @@
                                 ].map((palette, i) => (
                                     <div key={i}>
                                         <span className="tag mb-6 block text-center">{palette.name}</span>
-                                        <div className="flex flex-wrap gap-2 justify-center">
+                                        <div className="flex flex-wrap gap-3 justify-center">
                                             {palette.colors.map((color, j) => (
-                                                <div key={j} className="swatch" style={{backgroundColor: color, width: '40px', height: '40px'}}></div>
+                                                <div key={j} className="swatch" style={{backgroundColor: color, width: '45px', height: '45px'}}></div>
                                             ))}
                                         </div>
                                     </div>
@@ -758,24 +761,24 @@
             const LookbookPage = () => (
                 <div className="pt-24 animate-fade">
                     {/* Header */}
-                    <section className="py-20 px-6 bg-white">
+                    <section className="py-24 px-6 bg-white">
                         <div className="max-w-4xl mx-auto text-center">
-                            <p className="text-xs tracking-[0.3em] uppercase text-gray-400 mb-6">Inspiration</p>
-                            <h1 className="font-serif text-5xl md:text-6xl text-gray-800 mb-8">Lookbook</h1>
-                            <p className="text-gray-500 max-w-xl mx-auto">
+                            <p className="text-sm tracking-[0.3em] uppercase text-gray-400 mb-6">Inspiration</p>
+                            <h1 className="font-serif text-6xl md:text-7xl text-gray-800 mb-8">Lookbook</h1>
+                            <p className="text-gray-500 text-xl max-w-xl mx-auto">
                                 Style inspiration for the modern minimalist
                             </p>
                         </div>
                     </section>
                     
                     {/* Combinations */}
-                    <section className="py-16 px-6 bg-white">
+                    <section className="py-20 px-6 bg-white">
                         <div className="max-w-7xl mx-auto">
-                            <div className="text-center mb-12">
-                                <h2 className="font-serif text-3xl text-gray-800">Combinations</h2>
+                            <div className="text-center mb-14">
+                                <h2 className="font-serif text-4xl text-gray-800">Combinations</h2>
                             </div>
                             
-                            <div className="grid md:grid-cols-3 gap-8 mb-20">
+                            <div className="grid md:grid-cols-3 gap-10 mb-24">
                                 {[
                                     { img: 'page4_img1.jpeg', label: 'Minimalism Contemporary' },
                                     { img: 'page4_img2.jpeg', label: 'Effortless' },
@@ -793,17 +796,17 @@
                     </section>
                     
                     {/* Styling Tips */}
-                    <section className="py-16 px-6" style={{backgroundColor: '#F5F3F0'}}>
+                    <section className="py-20 px-6" style={{backgroundColor: '#F5F3F0'}}>
                         <div className="max-w-6xl mx-auto">
-                            <div className="text-center mb-12">
-                                <h2 className="font-serif text-3xl text-gray-800">Styling with Scarfs</h2>
+                            <div className="text-center mb-14">
+                                <h2 className="font-serif text-4xl text-gray-800">Styling with Scarfs</h2>
                             </div>
                             
                             <div className="grid md:grid-cols-3 gap-8">
                                 <div className="md:col-span-1 img-premium aspect-[3/4]">
                                     <img src="images/page5_img1.jpeg" alt="Scarf styling" className="w-full h-full object-cover" />
                                 </div>
-                                <div className="md:col-span-2 grid grid-cols-2 gap-4">
+                                <div className="md:col-span-2 grid grid-cols-2 gap-5">
                                     <div className="img-premium aspect-square">
                                         <img src="images/page5_img2.jpeg" alt="Scarfs" className="w-full h-full object-cover object-top" />
                                     </div>
@@ -819,13 +822,13 @@
                     </section>
                     
                     {/* Gallery Grid */}
-                    <section className="py-16 px-6 bg-white">
+                    <section className="py-20 px-6 bg-white">
                         <div className="max-w-7xl mx-auto">
-                            <div className="text-center mb-12">
-                                <h2 className="font-serif text-3xl text-gray-800">Style Gallery</h2>
+                            <div className="text-center mb-14">
+                                <h2 className="font-serif text-4xl text-gray-800">Style Gallery</h2>
                             </div>
                             
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                                 {['page3_img1.jpeg', 'page3_img3.jpeg', 'page3_img4.jpeg', 'page3_img5.jpeg', 
                                   'page3_img7.jpeg', 'page2_img8.jpeg', 'page11_img8.jpeg', 'page14_img2.jpeg'].map((img, i) => (
                                     <div key={i} className={`img-premium ${i === 4 ? 'md:col-span-2 md:row-span-2' : ''}`}>
@@ -837,14 +840,14 @@
                     </section>
                     
                     {/* Prints */}
-                    <section className="py-16 px-6" style={{backgroundColor: '#F5F3F0'}}>
+                    <section className="py-20 px-6" style={{backgroundColor: '#F5F3F0'}}>
                         <div className="max-w-6xl mx-auto">
-                            <div className="text-center mb-12">
-                                <h2 className="font-serif text-3xl text-gray-800">Prints</h2>
-                                <p className="text-gray-500 mt-4">Muted & harmonious colours with sophisticated, vintage & elegant designs</p>
+                            <div className="text-center mb-14">
+                                <h2 className="font-serif text-4xl text-gray-800">Prints</h2>
+                                <p className="text-gray-500 text-lg mt-5">Muted & harmonious colours with sophisticated, vintage & elegant designs</p>
                             </div>
                             
-                            <div className="grid md:grid-cols-3 gap-6">
+                            <div className="grid md:grid-cols-3 gap-8">
                                 <div className="img-premium aspect-square">
                                     <img src="images/page17_img1.jpeg" alt="Print 1" className="w-full h-full object-cover" />
                                 </div>
@@ -862,24 +865,24 @@
             
             // Footer
             const Footer = () => (
-                <footer className="py-20 px-6" style={{backgroundColor: '#5C6B52'}}>
+                <footer className="py-24 px-6" style={{backgroundColor: '#5C6B52'}}>
                     <div className="max-w-6xl mx-auto">
-                        <div className="grid md:grid-cols-4 gap-12 mb-16">
+                        <div className="grid md:grid-cols-4 gap-14 mb-16">
                             <div className="md:col-span-2">
-                                <h3 className="font-serif text-3xl text-white mb-4">The Journal</h3>
-                                <p className="text-white/60 leading-relaxed max-w-md">
+                                <h3 className="font-serif text-4xl text-white mb-6">The Journal</h3>
+                                <p className="text-white/60 text-lg leading-relaxed max-w-md">
                                     Artisan minimalism for the modern woman. Each piece tells a story of 
                                     memorable details and unconventional sophistication.
                                 </p>
                             </div>
                             <div>
-                                <p className="text-xs tracking-widest uppercase text-white/40 mb-6">Navigate</p>
-                                <div className="space-y-3">
+                                <p className="text-sm tracking-widest uppercase text-white/40 mb-6">Navigate</p>
+                                <div className="space-y-4">
                                     {navItems.map(item => (
                                         <button 
                                             key={item.id}
                                             onClick={() => setCurrentPage(item.id)}
-                                            className="block text-white/70 hover:text-white transition-colors text-sm"
+                                            className="block text-white/70 hover:text-white transition-colors text-base"
                                         >
                                             {item.label}
                                         </button>
@@ -887,8 +890,8 @@
                                 </div>
                             </div>
                             <div>
-                                <p className="text-xs tracking-widest uppercase text-white/40 mb-6">Connect</p>
-                                <div className="space-y-3 text-white/70 text-sm">
+                                <p className="text-sm tracking-widest uppercase text-white/40 mb-6">Connect</p>
+                                <div className="space-y-4 text-white/70 text-base">
                                     <p>Instagram</p>
                                     <p>Pinterest</p>
                                     <p>Facebook</p>
@@ -896,9 +899,9 @@
                             </div>
                         </div>
                         
-                        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-                            <p className="text-white/40 text-xs">© 2024 The Journal. All rights reserved.</p>
-                            <p className="text-white/40 text-xs mt-4 md:mt-0">Artisan Minimalism</p>
+                        <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center">
+                            <p className="text-white/40 text-sm">© 2024 The Journal. All rights reserved.</p>
+                            <p className="text-white/40 text-sm mt-4 md:mt-0">Artisan Minimalism</p>
                         </div>
                     </div>
                 </footer>
@@ -923,4 +926,3 @@
     </script>
 </body>
 </html>
-
